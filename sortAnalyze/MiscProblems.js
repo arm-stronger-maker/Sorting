@@ -52,3 +52,28 @@ console.log(climbStair(7));
 
 // Time complexity => O(n) time.
 // Loop: The for loop runs from 2 to n, which also takes O(n) time.
+
+
+
+/*  Tower of Hanoi
+    Process => involves moving a stack of disks from one rod to another, using an auxiliary rod.
+
+    Rules: 
+    * Only one disk can be moved at a time.
+    * A disk can only be placed on top of a larger disk or an empty rod.
+    * You must use the auxiliary rod to move disks.
+
+*/
+
+function towerOfHanoi(n, fromRod, toRod, usingRod){
+    if(n === 1){
+        console.log(`Move disk 1 from ${fromRod} to ${toRod}`);
+        return;
+    }
+    towerOfHanoi(n-1, fromRod, usingRod, toRod);
+    console.log(`Move disk ${n} from ${fromRod} to ${toRod}`);
+    towerOfHanoi(n-1, usingRod, toRod, fromRod)
+}
+const n = 3;
+towerOfHanoi(n, 'A','C','B');  
+// n = number of disks. Those three disks are currently in rod=>"source. We need to move the three disks from the source to the destination"
