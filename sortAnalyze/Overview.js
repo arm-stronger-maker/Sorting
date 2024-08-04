@@ -128,7 +128,7 @@ function merge(left, right){
 let arrays = [8, 20, -2, 4, -6]
 console.log(mergeSort(arrays));
 
-let a = []
+let a = [] 
 console.log(a.length);
 
 /*
