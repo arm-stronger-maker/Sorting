@@ -1,48 +1,50 @@
-// array = [-6, 20, 8, -2, 4]
+
+
+array = [-6, 20, 8, -2, 4]
    
-// // Way 1 using build-in sort method
-// array.sort((a,b)=>a-b)
-// console.log(array);
+// Way 1 using build-in sort method
+array.sort((a,b)=>a-b)
+console.log(array)
 
-// // Way 2 using spread operator
-// const result = [...array].sort((a,b)=>a-b);
-// console.log(result);
+//  Way 2 using spread operator
+ const result = [...array].sort((a,b)=>a-b);
+ console.log(result);
 
 
-// // Way 3 using bubble sort
-// function bubbleSort(array){
-//     let len = array.length;
+// Way 3 using bubble sort
+ function bubbleSort(array){
+     let len = array.length;
  
-//     for(let i=0; i<len-1; i++){
-//         for(let j=0; j<len-i-1; j++){  //The number of comparisons decreases with each pass because the largest elements are already sorted towards the end of the array.
-//             if(array[j]>array[j+1]){
-//                 [array[j], array[j+1]] = [array[j+1], array[j]]
-//             }
-//         }
-//     }
-//     return array;
-// }
+    for(let i=0; i<len-1; i++){
+        for(let j=0; j<len-i-1; j++){  //The number of comparisons decreases with each pass because the largest elements are already sorted towards the end of the array.
+            if(array[j]>array[j+1]){
+                [array[j], array[j+1]] = [array[j+1], array[j]]
+            }
+        }
+    }
+    return array;
+}
 
-// console.log(bubbleSort(array));
+ console.log(bubbleSort(array));
 
 
-// function bubbleSortArray(array){
-//     let swapped;
-//     do{
-//      swapped = false;
-//     for(let i=0; i<array.length-1; i++){  // Oru for loop mattum irundha, one time dhan loop run aagum. So we need to add do while loop here.
-//         if(array[i]>array[i+1]){
-//             let temp = array[i]
-//             array[i] = array[i+1];
-//             array[i+1] = temp;
-//             swapped = true; 
-//          }
-//       } 
-//    } while(swapped)
-//     return array
-//  }
+ function bubbleSortArray(array){
+     let swapped;
+     do{
+      swapped = false;
+     for(let i=0; i<array.length-1; i++){  // Oru for loop mattum irundha, one time dhan loop run aagum. So we need to add do while loop here.
+         if(array[i]>array[i+1]){
+             let temp = array[i]
+             array[i] = array[i+1];
+             array[i+1] = temp;
+             swapped = true; 
+          }
+       } 
+    } while(swapped)
+     return array
+  }
 
-// console.log(bubbleSortArray([-6, 20, 8, -2, 4]));
+ console.log(bubbleSortArray([-6, 20, 8, -2, 4]));
 
 
 //Insertion sorting
@@ -130,6 +132,17 @@ console.log(mergeSort(arrays));
 
 let a = [] 
 console.log(a.length);
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 
