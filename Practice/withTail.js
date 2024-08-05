@@ -105,7 +105,7 @@ class withTail{
     print(){
         if(this.isEmpty()){
             console.log('List is Empty');
-        }   
+        } else {  
             let listedValues = ''
             let curr = this.head;
             while(curr.next !== null) {
@@ -115,8 +115,12 @@ class withTail{
             listedValues += curr.value
             console.log(listedValues);
     }
+  }
 }
 
+
+module.exports = withTail;
+/*
 
 const testTail = new withTail();
 
@@ -132,3 +136,5 @@ testTail.removeFromEnd()
 
 
 testTail.print()
+
+*/
