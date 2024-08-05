@@ -1,21 +1,3 @@
-// It calls indefinitely. At somePoint it returns a "range Error" due to reaches its maximum call stack size.
-
-/*
-function recursionCalls(n){
-    console.log(n);
-    recursionCalls(n+1)
-}
-
-try{
-    recursionCalls(1);
-}catch(error){
-    console.log('RangeError: ', error);
-    
-}
-*/
-
-
-
 class Node{
     constructor(value){
         this.value = value;
@@ -23,20 +5,19 @@ class Node{
     }
 }
 
-
-class withTail{
+class QueueTest{
     constructor(){
         this.head = null;
         this.tail = null;
         this.size = 0;
     }
 
-    isEmpty(){
-        return this.size === 0
-    }
-
     getSize(){
         return this.size;
+    }
+
+    isEmpty(){
+        return this.size === 0
     }
 
     prepend(value){
@@ -44,19 +25,20 @@ class withTail{
         if(this.isEmpty()){
             this.head = node;
             this.tail = node;
-        }else {
+        } else {
             node.next = this.head;
-            this.head = node;   
+            this.head = node;
         }
         this.size++
     }
+
 
     append(value){
         let node = new Node(value);
         if(this.isEmpty()){
             this.head = node;
             this.tail = node;
-        } else {
+        }else {
             this.tail.next = node;
             this.tail = node;
         }
@@ -65,14 +47,14 @@ class withTail{
 
     removeFromFront(){
         if(this.isEmpty()){
-            return;
+            throw new Error('RangeError: Queue is Empty')
         }
         let removeValue;
-        if(this.size === 1) {
+        if(this.size === 1){
             removeValue = this.head;
             this.head = null;
             this.tail = null;
-        }else {
+        }else{
             removeValue = this.head;
             this.head = removeValue.next;
         }
@@ -80,13 +62,14 @@ class withTail{
         return removeValue;
     }
 
+
     removeFromEnd(){
         if(this.isEmpty()){
-            return;
+            return null;
         } 
         let removeValue;
         if(this.size === 1){
-            listedValues = this.tail;
+            removeValue = this.head;
             this.head = null;
             this.tail = null;
         }else{
@@ -95,46 +78,38 @@ class withTail{
                 curr = curr.next;
             }
             removeValue = this.tail;
-            curr.next = null;  // curr.next ==== this.tail. we assign a value of null to this.tail. => this.tail = null; Adhukaaga this.tail = null nu kudukka kudadhu. curr.next = null; 
+            curr.next = null;  // curr.next dhan kudukanaum.
             this.tail = curr;
         }
-        this.size--
+        this.size--;
         return removeValue;
     }
 
     print(){
         if(this.isEmpty()){
-            console.log('List is Empty');
-        } else {  
-            let listedValues = ''
-            let curr = this.head;
-            while(curr.next !== null) {
-                listedValues += `${curr.value} `
-                curr = curr.next;
-            }
-            listedValues += curr.value
-            console.log(listedValues);
+            console.log('Queue is Empty');
+        }
+        let listedValues = ''
+        let curr = this.head;
+        while(curr){
+            listedValues += `${curr.value} `
+            curr = curr.next
+        }
+        console.log(listedValues);
+        
     }
-  }
 }
 
 
-module.exports = withTail;
-/*
+const queue = new QueueTest()
+queue.prepend(30)
+queue.prepend(20)
+queue.prepend(10)
 
-const testTail = new withTail();
+queue.append(40)
+queue.append(50)
 
-testTail.prepend(30)
-testTail.prepend(20)
-testTail.prepend(10)
+queue.removeFromFront()
+queue.removeFromEnd()
 
-testTail.append(40)
-testTail.append(50)
-
-testTail.removeFromFront()
-testTail.removeFromEnd()
-
-
-testTail.print()
-
-*/
+queue.print()

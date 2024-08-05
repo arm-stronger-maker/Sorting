@@ -1,4 +1,4 @@
-const withTail = require('../Practice/withTail');
+const withTail = require('./withTail');
 
 class stackPractice{
     constructor(){
