@@ -23,7 +23,7 @@ class Queue{
         if(this.isEmpty()){
             throw new Error('Queue Underflow, Cannot remove an element from the empty queue.')
         }
-        return this.items.shift()  // shift method removes the first element from the array. unShift method adds elements at the starting position of the array 
+        return this.items.shift()  // shift method removes the first element from the array. unshift() method adds elements at the starting position of the array 
     }
 
     frontElement(){  // Also called peek()
