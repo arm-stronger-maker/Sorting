@@ -101,17 +101,18 @@ class tail{
     }
 }
 
+module.exports = tail;
 
-const testTail = new tail()
+// const testTail = new tail()
 
-testTail.prepend(30)
-testTail.prepend(20)
-testTail.prepend(10)
+// testTail.prepend(30)
+// testTail.prepend(20)
+// testTail.prepend(10)
 
-testTail.append(40)
-testTail.append(50)
+// testTail.append(40)
+// testTail.append(50)
 
-testTail.removeFromFront()
-testTail.removeFromEnd()
+// testTail.removeFromFront()
+// testTail.removeFromEnd()
 
-testTail.print()
+// testTail.print()
