@@ -1,7 +1,7 @@
 class Node{
     constructor(value){
         this.value = value;
-        this.nextt = null;
+        this.next = null;
     }
 }
 
@@ -40,7 +40,7 @@ class stackTesting{
                 nextt: null,
                 next: Node { value: 30, nextt: null }
               }
-        }    LIKE THIS.......
+        }    ////LIKE THIS.......
         */           
         return removeNode.value;
     }

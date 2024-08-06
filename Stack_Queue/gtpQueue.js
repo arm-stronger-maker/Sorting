@@ -13,7 +13,7 @@ class Queue{
         return this.items.length;
     }
 
-    // Add an element to the end of the queue. Enqueue used for addition an element [Insert]
+    // Add an element to the end of the queue. Enqueue used for adding an element [Insert]
     enqueue(value){
         this.items.push(value)
     }
