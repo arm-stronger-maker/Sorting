@@ -140,11 +140,12 @@ withOutCollision.insertValueWith('Leader')
 withOutCollision.insertValueWith('Typing')
 withOutCollision.insertValueWith('Food')
 withOutCollision.insertValueWith('Boat')
-withOutCollision.insertValueWith('Where the dresses')
+withOutCollision.insertValueWith('Where the dresses')  // Hash is Fullll
 // withOutCollision.insertValueWith('Move accross')
 // withOutCollision.insertValue('Walk') ...It leads to infinte loop. Because array attains its max size.
 // Also, Linear probing mostly follows like circular queue. Slot is occupied one by one. Sequentially. 
 // Rewrites the insertFUNtion.
 
 console.log(withOutCollision.items);
+
 
