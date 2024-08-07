@@ -78,5 +78,22 @@ function insertionSort(array){
     return array;
 }
 
+console.log(insertionSort([7,2,3,7,1,4,8])); 
 
-console.log(insertionSort([7,2,3,7,1,4,8]));
+
+function selectionSort(array){
+     for(let i=0; i<array.length-1; i++){
+            let minIndex = i;
+        for(let j=i+1; j<array.length; j++){
+            if(array[j]<array[minIndex]){  /// minIndex is important
+                minIndex = j;
+            }
+        }
+        if(minIndex !== i){
+            [array[i], array[minIndex]] = [array[minIndex], array[i]]
+        }
+     }
+     return array;
+}
+
+console.log(selectionSort([5, 2, 9, 1, 5, 6]));
