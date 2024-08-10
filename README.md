@@ -14,7 +14,7 @@ function insertSort(array){
 
         array[j+1] = currentElement;
 
-         // Log the array after each iteration to show the sorting process
+         // Log the array after each iteration 
          console.log(`After iteration ${i}:`, array.join(', '));
     }
     return array
