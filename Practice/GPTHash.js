@@ -7,9 +7,9 @@ class GPTHash{
     generateHashIndex(key){
         let hash = 0;
         for(let i=0; i<key.length; i++){
-            hash += key.charCodeAt(i)
+            hash = (hash + key.charCodeAt(i)) % this.size
         }
-        return hash%this.size;
+        return hash;
     }
 
     addValue(key, value){
@@ -45,7 +45,7 @@ class GPTHash{
         if(bucket){
             let sameKeyItem = bucket.find((item)=>item[0]===key);
             if(sameKeyItem){
-                bucket.splice(bucket.indexOf(sameKeyItem, 1))
+                bucket.splice(sameKeyItem, 1)
             }
         }
     }

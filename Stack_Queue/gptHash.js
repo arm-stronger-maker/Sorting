@@ -13,10 +13,10 @@ class Hash{
     }
 
 
-    // This implementation handles collisions (when different keys hash to the same index) by using separate chaining.
-    // each bucket can hold multiple key-value pairs in an array.
+    // This implementation handles collisions (when different "keys hashes" follows the "same index") by using "separate chaining". Seperate Chaining is a way to handle or prevent collision issue in the Hash Data structure.
+    // each bucket can hold multiple key-value pairs in an array. line => [ [], [], [].. ]
     set(key, value){  
-        let index = this.generateHashIndex(key);  //  "convert the key into a number" for storing our key-value pair.
+        let index = this.generateHashIndex(key);  //  "convert the key into a index" for storing our key-value pair.
         let bucket = this.table[index];  // bucket contains an array to store key value pairs     
         if(!bucket){
             this.table[index] = [[key, value]]; // If the bucket doesn't exist, it creates a new bucket with the key-value pair.  The bucket is an array containing another array (the key-value pair).
@@ -36,7 +36,7 @@ class Hash{
         if(bucket){
             let findGivenKey = bucket.find((item)=>item[0] === key);
             if(findGivenKey){
-                return bucket[1];
+                return findGivenKey[1];
             }
         }
         return undefined;

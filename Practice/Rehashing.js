@@ -1,30 +1,27 @@
 let size = 7;
-let array = new Array(size).fill(null)
+let array = new Array(size).fill(null);
 let count = 0;
 
-
-function hashKey(key){
+function hashKey(key) {
     let hash = 0;
-    for(let i=0; i<key.length; i++){
-        hash += (hash*31 + key.charCodeAt(i)) % size;
+    for (let i = 0; i < key.length; i++) {
+        hash = (hash * 31 + key.charCodeAt(i)) % size;
     }
     return hash;
 }
 
-
-function insertKey(key){
-    if(count/size > 0.7) {
+function insertKey(key) {
+    if (count / size > 0.7) {
         rehash();
-    }  // base case.
+    }
 
     let index = hashKey(key);
-    while(array[index] !== null){
-        index = (index+1) % size
+    while (array[index] !== null) {
+        index = (index + 1) % size;
     }
     array[index] = key;
     count++;
 }
-
 
 function rehash() {
     let oldArray = array;
@@ -32,30 +29,21 @@ function rehash() {
     array = new Array(size).fill(null);
     count = 0;
 
-    for(let num of oldArray){
-        if(num !== null){
+    for (let num of oldArray) {
+        if (num !== null) {
             insertKey(num);
-        }   
+        }
     }
 }
 
+// Example usage
+insertKey('name');
+insertKey('age');
+insertKey('city');
+insertKey('country');
+insertKey('continent');
+insertKey('planet');
 
-insertKey('Malayalam')
-insertKey('lamMalaya')
-insertKey('Lemon')
-insertKey('Serum')
-insertKey('Eight')
-insertKey('Text')
-insertKey('Accquire')
-insertKey('Drives')
-insertKey('lsdif')
-insertKey('aoidh')
-insertKey('Drasdooiasives')
-insertKey('aoidhd')
-insertKey('aoidh')
-insertKey('asoidas')
-insertKey('aspodoj')
-insertKey('asosidh')
 console.log(array);
 
 // It's will gradually increase the size of the array with increase the number of inputs. 

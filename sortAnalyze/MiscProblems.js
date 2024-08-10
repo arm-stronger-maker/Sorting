@@ -26,7 +26,7 @@ console.log(cartesianProductOfTwoArray(array1, array2));  // [ [ 1, 3 ], [ 1, 4 
    Climbing staircase
    formula looks like Fibonacci series. => fib[n-1] + fib[n-2] 
    refer climbing staircase images. 
-   The number of ways to climb (n) = the number of ways[n-1] + the nm=umber of ways[n-2]. same as Fibonacci.
+   The number of ways to climb (n) = the number of ways[n-1] + the number of ways[n-2]. same as Fibonacci.
 
    question: Given a staircase with n steps, you can either take 1 step or 2 steps at a time. 
    Your goal is to determine the number of distinct ways to reach the top of the staircase?

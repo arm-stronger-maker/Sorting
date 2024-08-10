@@ -3,10 +3,6 @@ class priorityQueue{
         this.array = []
     }
 
-    getSize(){
-        return this.array.length;
-    }
-
     isEmpty(){
         return this.array.length === 0
     }
@@ -22,7 +18,6 @@ class priorityQueue{
                 break;
             }
         }
-
         if(!added){
             this.array.push(bunch)
         }
@@ -51,5 +46,4 @@ priority.addValue(70,2)
 
 // console.log(priority.dequeue());
 console.log(priority.frontElement());
-
 

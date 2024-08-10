@@ -97,19 +97,42 @@ function merge(array1, array2){
 console.log(mergeSort([3,5,7,9,1,4]));
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Insertion sort => 1st and 0th element comparison. Front and prervious with help of "j"
 // Selection sort => minIndex swapping.
+
+
+
+let a = [1,2]
+let b = [3,4];
+
+function Cartesian(a1, a2){
+    let result = [];
+    for(let i=0; i<a1.length; i++){
+        for(let j=0; j<a2.length; j++){
+            result.push([a1[i],a2[j]])
+        }
+    }
+    return result
+}
+
+console.log(Cartesian(a,b));
+
+
+function climbStair(n){
+       if(n===0) return 1;
+       if(n===1) return 1;
+
+       let probability = new Array(n+1).fill(0);
+       probability[0] = 1;
+       probability[1] = 1;
+        for(let i=2; i<=n; i++){
+          probability[i] = probability[i-1] + probability[i-2];
+       }
+       return probability[n]
+}
+
+console.log(climbStair(2));
+console.log(climbStair(3));
+console.log(climbStair(4));
+console.log(climbStair(5));
+console.log(climbStair(6));

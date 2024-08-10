@@ -35,7 +35,7 @@ class Stack{
              reverseStr += stack.remove();
        }
         return reverseStr;
-    }
+  }
 
 
 

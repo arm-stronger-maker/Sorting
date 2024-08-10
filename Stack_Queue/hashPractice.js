@@ -14,11 +14,11 @@ console.log('Decending order - ',decending);
 // Understand what collision is, we need to create a basic hash class with hash method.
 class hashTable {
     constructor(size){
-        this.size = size; // we assign the give size into a separate variable for future accessibility.
+        this.size = size; // we assign the size value into a separate variable for future accessibility.
         this.items = new Array(size); // Here, we create an array with the user's defined size. 
     }
 
-    hash(key){  // Keep mind => It accepts a string. It converts the string into ASCII values. Add the ASCII values ans return a number. This number is called "Hash".
+    hash(key){  //It accepts a string. It converts the string into ASCII values. Add the ASCII values ans return a number. This number is called "Hash index".
         let total = 0;
         for(let i=0; i<key.length; i++){
             total += key.charCodeAt(i);
@@ -103,7 +103,7 @@ practice.set('mane', 'Kishore') // 111 Kishore. So as expected, it allocates our
 practice.print()
 
 
-// 2. Increaing the size of array also reduce the issue of collision. Because teh array size is broad. less chances to get collisioned.
+// 2. Increaing the size of array also reduce the issue of collision. Because the array size is broad. less chances to get collisioned.
 
 // Perform other new Techniques.
 
@@ -144,7 +144,7 @@ console.log(test.items);
 
 
 
-// Rehashing => If the hash table becomes too full (high load factor), resize it and rehash all the keys into the new larger table.
+// Rehashing => If the hash table becomes completely full (high load factor), resize it and rehash all the old keys into the new larger table.
 
 let hashTableSize = 7;
 let hashTableTest = new Array(hashTableSize).fill(null); // initially it is null; Empty

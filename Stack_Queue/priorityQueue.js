@@ -32,7 +32,7 @@ class priorityQueue{
     
     /* Remove an element with have highest priority value;
      In a standard priority queue:
-     Lower numerical values usually indicate higher priority.
+     Lower numerical priority values usually indicate higher priority.
      The element with the highest priority (lowest numerical value) should be dequeued first.*/
 
     dequeue(){

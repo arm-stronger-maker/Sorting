@@ -27,26 +27,6 @@ console.log(array)
 
  console.log(bubbleSort(array));
 
-
- function bubbleSortArray(array){
-     let swapped;
-     do{
-      swapped = false;
-     for(let i=0; i<array.length-1; i++){  // Oru for loop mattum irundha, one time dhan loop run aagum. So we need to add do while loop here.
-         if(array[i]>array[i+1]){
-             let temp = array[i]
-             array[i] = array[i+1];
-             array[i+1] = temp;
-             swapped = true; 
-          }
-       } 
-    } while(swapped)
-     return array
-  }
-
- console.log(bubbleSortArray([-6, 20, 8, -2, 4]));
-
-
 //Insertion sorting
 function insertSort(array){
     let len = array.length;
@@ -86,7 +66,7 @@ function quickSortArray(array){
     let left = [];
     let right = [];
 
-    for(let i=0; i<array.length-1; i++){
+    for(let i=0; i<array.length-1; i++){  // here, we skip the last element, we assign the alst element in the pivot variable.
         if(array[i]<pivot){
             left.push(array[i])
         } else {
@@ -111,7 +91,7 @@ function mergeSort(array){
     let rightArray = array.slice(middle);
     return merge(mergeSort(leftArray), mergeSort(rightArray))  // It recursively calls left and right. each half is further divided and sorted until the base case is reached
 }   // finally, it returns a sorte version of left and right array.
-    // Once both halves are sorted, the merge function is called with the two sorted arrays as arguments.
+    // Once the both halves are sorted, the merge function is called with the two sorted arrays as arguments.
     // The merge function then combines these two sorted arrays into a single sorted array.
 
 function merge(left, right){

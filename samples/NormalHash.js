@@ -44,3 +44,5 @@ result.remove('name')
 result.print();
 
 console.log(result.get('name'));
+
+

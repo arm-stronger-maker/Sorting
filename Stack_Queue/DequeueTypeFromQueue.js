@@ -1,6 +1,6 @@
 /*
 
-A Deque (Double-Ended Queue) is a type of queue in which insertion and
+A DEQue (Double-Ended Queue) is a type of queue in which insertion and
 deletion of elements can be performed from both ends (front and rear).
 
 */

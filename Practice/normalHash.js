@@ -49,47 +49,6 @@ hashTest.insertValue('name', 'Tamil')
 console.log(hashTest.getValue('name')) // collision occurs.
 
 
-
-class hashPractice{
-    constructor(size){
-        this.size = size;
-        this.items = new Array(size);
-    }
-
-    hashIndex(key){
-        let total = 0;
-        for(let i=0; i<key.length; i++){
-            total += (total * 31 + key.charCodeAt(i))%this.size
-        }
-        return total;
-    }
-
-    set(key, value){
-        let index = this.hashIndex(key);
-        this.items[index] = value;
-    }
-
-    print(){
-        for(let i=0; i<this.items.length; i++){
-            if(this.items[i]){
-                console.log(i, this.items[i]);
-                
-            }
-        }
-    }
-}
-
-
-
-const testingHash = new hashPractice(50)
-
-testingHash.set('age', 20)
-testingHash.print()
-testingHash.set('age', 22)
-testingHash.print()
-// But the issue is, it overwrites the pre exisiting valu, means also it have the collision issue. It is only applicable for better distribution. In case of same keys are occurs, it overwrites.
-
-
 // there are some techniques available to prevent collisons  such as Linear probing, seperate chaining.
 
 class hashwithOutCollision{
@@ -133,10 +92,10 @@ class hashwithOutCollision{
 
 const withOutCollision = new hashwithOutCollision(7);
 
-withOutCollision.insertValueWith('Raman')
-withOutCollision.insertValueWith('Kishore')
+withOutCollision.insertValueWith('White')
+withOutCollision.insertValueWith('RoundFace')
 withOutCollision.insertValueWith('Armstrong')
-withOutCollision.insertValueWith('Leader')
+withOutCollision.insertValueWith('Hope')
 withOutCollision.insertValueWith('Typing')
 withOutCollision.insertValueWith('Food')
 withOutCollision.insertValueWith('Boat')
