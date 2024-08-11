@@ -1,3 +1,4 @@
+/*  Using Hash table to find Max occurrence
 class Hash{
     constructor(size){
         this.items = new Array(size);
@@ -76,3 +77,28 @@ array.map((x) => HT.insertValue(x.toString(), x))
 HT.print()
 console.log(HT.findoccurence(2));
 console.log(HT.getValue('4'));
+*/
+
+const mypromise = new Promise((res, rej)=> {
+    let result = 1;
+    if(result){
+        setTimeout(res, 3000, 'Sucessss')
+    }else{
+        rej('Something went Wrong')
+    }
+})
+
+async function sample() {
+  
+    try{
+        console.log('Start');
+        let result = await mypromise;
+        console.log(result);
+        console.log('End');
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+sample()
