@@ -78,7 +78,31 @@ class hashTable{
         return uniqueArray;
     }
 
+    sortElements(){
+        let allElements = [];
+        for(let i=0; i<this.array.length; i++){
+            if(this.array[i]){
+                for(let j=0; j<this.array[i].length; j++){
+                    allElements.push(this.array[i][j])
+                }
+            }
+        }
+        allElements.sort((a, b) => (a[1] > b[1]? 1 : -1))
+        return allElements;
+    }
 
+    reverseUsingHash(){
+        let ReverseArray = [];
+        for(let i=0; i<this.array.length; i++){
+            if(this.array[i]){
+                for(let j=0; j<this.array[i].length; j++){
+                    ReverseArray.push(this.array[i][j])
+                }
+            }
+        }
+        ReverseArray.reverse();
+        return ReverseArray;
+    }
 
 
     print(){
@@ -93,13 +117,14 @@ class hashTable{
 const Hash = new hashTable(50);
 
 
-let array = [1,2,2,2,3,4,5,5];
+let array = [1,2,3,5,5,2,2,4];
 array.map((x) => Hash.insertValue(x.toString(), x))
 Hash.print()
 
 console.log(Hash.countOccurrence('5'));
 console.log(Hash.removeDuplicates());
-
+console.log(Hash.sortElements());
+console.log(Hash.reverseUsingHash());
 
 
 
