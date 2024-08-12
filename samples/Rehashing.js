@@ -3,47 +3,47 @@ let array = new Array(size).fill(null);
 let count = 0;
 
 
-function hashKey(key){
-    let hash = 0;
+function hashing(key){
+    let total = 0;
     for(let i=0; i<key.length; i++){
-        hash = (hash*31 + key.charCodeAt(i)) % size;
+        total = (total + key.charCodeAt(i)) % size;
     }
-    return hash;
+    return total;
 }
 
 
-function insertkey(key){
-    while(count / size > 0.7){
-        rehash()
+function insertValue(key){
+    if(count/size > 0.7){
+        reHashing()
     }
-    let index = hashKey(key);
+    let index = hashing(key);
     if(array[index] !== null){
-        index = (index + 1) % size;
+        index = (index+1)%size;
     }
     array[index] = key;
     count++
 }
 
 
-function rehash(){
+function reHashing(){
     let oldArray = array;
     size = size * 2 + 1;
     array = new Array(size).fill(null);
     count = 0;
-
     for(let num of oldArray){
         if(num !== null){
-            insertkey(num)
+            insertValue(num)
         }
     }
 }
 
 
-insertkey('kd')
-insertkey('kd')
-insertkey('kd')
-insertkey('kd')
-insertkey('kd')
-insertkey('kd')
-
+insertValue('A')
+insertValue('B')
+insertValue('C')
+insertValue('D')
+insertValue('E')
+insertValue('F')
+insertValue('G')
+insertValue('ZZ')
 console.log(array);
