@@ -1,47 +1,37 @@
-class LinearHash{
+class LinearProbe{
     constructor(size){
+        this.array = new Array(size).fill(null);
         this.size = size;
-        this.items = new Array(size).fill(null);  // whenever perform this linear probing, we should initialize to "null" for later comparison.
     }
 
-    hashFnc(key){
-        let hash = 0;
+    hashFunction(key){
+        let total = 0;
         for(let i=0; i<key.length; i++){
-            hash = (hash * 31 + key.charCodeAt(i)) % this.size
+            total = (total*31 + key.charCodeAt(i)) % this.size;
         }
-        return hash;
+        return total
     }
 
-    insertInEfficient(key){
-        let index = this.hashFnc(key);
-        if(this.items[index] !== null){
-            index = (index+1) % this.size;
-        }
-        this.items[index] = key;
-    }
 
-    insertStraightForward(key){
-        let index = this.hashFnc(key);
+    insertValue(key){
+        let index = this.hashFunction(key);
         let startIndex = index;
-        while(this.items[index] !== null){
-            index = (index+1)%this.size;
+        while(this.array[index] !== null){
+            index = (index + 1) % this.size;
             if(index === startIndex){
-                console.log('Hash is Full');
+                console.log('Space gets full');
                 return;
             }
         }
-        this.items[index] = key;
+        this.array[index] = key;
     }
 }
 
-const result = new LinearHash(7);
-result.insertStraightForward('jhv')
-result.insertStraightForward('oidfh')
-result.insertStraightForward('lfi')
-result.insertStraightForward('lfsdlifhi')
-result.insertStraightForward('f')
-result.insertStraightForward('dfs')
-result.insertStraightForward('dfoiosfhds')
-// result.insertStraightForward('dfoiosfhds')
-// result.insertStraightForward('dfoiosfhdhsdfs')
-console.log(result.items);
+const testHash = new LinearProbe(5)
+testHash.insertValue('A')
+testHash.insertValue('E')
+testHash.insertValue('R')
+testHash.insertValue('O')
+testHash.insertValue('P')
+testHash.insertValue('L') // Space gets full
+console.log(testHash.array);
