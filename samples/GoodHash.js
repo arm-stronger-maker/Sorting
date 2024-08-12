@@ -4,34 +4,34 @@ class Hash{
         this.size = size;
     }
 
-    hashGenerator(key){
+
+    hashFunction(key){
         let hash = 0;
         for(let i=0; i<key.length; i++){
-            hash += key.charCodeAt(i);
+            hash = (hash+key.charCodeAt(i)) % this.size;
         }
-        return hash % this.size;
+        return hash;
     }
 
+
     insertValue(key, value){
-        let index = this.hashGenerator(key);
-        let bucket = this.items[index];
-        if(!bucket){
-            this.items[index] = [[key, value]];  // jagged array create the bucket;
-        } else {
+          let index = this.hashFunction(key);
+          let bucket = this.items[index];
+          if(!bucket){
+            this.items[index] = [[key, value]]
+          }else{
             let sameKeyItem = bucket.find((item) => item[0] === key);
             if(sameKeyItem){
                 sameKeyItem[1] = value;
-            } else {
+            }else{
                 bucket.push([key, value])
             }
         }
     }
 
-
     getValue(key){
-        let index = this.hashGenerator(key);
+        let index = this.hashFunction(key);
         let bucket = this.items[index];
-
         if(bucket){
             let sameKeyItem = bucket.find((item) => item[0] === key);
             if(sameKeyItem){
@@ -43,15 +43,16 @@ class Hash{
 
 
     removeValue(key){
-        let index = this.hashGenerator(key);
+        let index = this.hashFunction(key);
         let bucket = this.items[index];
-        if(bucket) {
-            let sameKeyItem = bucket.find((item) =>item[0] === key);
-            if(sameKeyItem){
-                bucket.splice(sameKeyItem,1) 
+        if(bucket){
+            let sameKeyItem = bucket.findIndex((item) => item[0] === key);
+            if(sameKeyItem !== -1){
+                bucket.splice(sameKeyItem, 1)
             }
         }
     }
+
 
     print(){
         for(let i=0; i<this.items.length; i++){
@@ -60,15 +61,18 @@ class Hash{
             }
         }
     }
+
 }
 
 
-const resultHash = new Hash(50);
+const HashTest = new Hash(50);
+HashTest.insertValue('name', 'Road')
+HashTest.insertValue('enam', 'Leaves')
+HashTest.insertValue('mena', 'Stick')
+HashTest.insertValue('amen', 'Smile')
+console.log(HashTest.removeValue('name'));
+HashTest.print()
+// All the key-values are stored in the same index of 17. Called "Bucket"
 
-resultHash.insertValue('name', 'Kishore') 
-resultHash.insertValue('mena', 'Armstrong')
-resultHash.insertValue('mane', 'NoteBooks')
+console.log(HashTest.getValue('amen')); // Smile
 
-resultHash.removeValue('name')
-
-resultHash.print()
