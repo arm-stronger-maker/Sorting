@@ -1,104 +1,85 @@
-/*  Using Hash table to find Max occurrence
+let a = 10;
+// toString method converts a number into string.
+console.log(typeof(a)); // number
+console.log(typeof(a).toString());  // string
+
+// Using hash table to calculate the occurrence of particular value using this toString() method.
+
 class Hash{
     constructor(size){
-        this.items = new Array(size);
+        this.array = new Array(size);
         this.size = size;
     }
 
     hashFunction(key){
         let hash = 0;
         for(let i=0; i<key.length; i++){
-            hash += key.charCodeAt(i)
+            hash = (hash + key.charCodeAt(i)) % this.size
         }
-        return hash%this.size;
+        return hash;
     }
 
     insertValue(key, value){
-        const index = this.hashFunction(key);
-        if(!this.items[index]){
-            this.items[index] = []
+        let index = this.hashFunction(key);
+        if(!this.array[index]){
+            this.array[index] = [];
         }
-        this.items[index].push([key, value])
+        this.array[index].push([key, value])
     }
 
     getValue(key){
         let index = this.hashFunction(key);
-        let bucket = this.items[index];
+        let bucket = this.array[index];
         if(bucket){
-            let sameKeyindex = bucket.find((item)=> item[0] === key);
-            if(sameKeyindex){
-                return sameKeyindex[1]
+            let sameKeyItem = bucket.find((item) => item[0] === key);
+            if(sameKeyItem){
+                return sameKeyItem[1]
             }
         }
         return undefined;
     }
 
+
     removeValue(key){
         let index = this.hashFunction(key);
-        let bucket = this.items[index];
+        let bucket = this.array[index];
         if(bucket){
-            let sameKeyindex = bucket.findIndex((item)=>item[0]===key);
-            if(sameKeyindex !== -1){
-                bucket.splice(sameKeyindex, 1)
+            let sameKeyItem = bucket.findIndex((item) => item[0] === key);
+            if(sameKeyItem !== -1){
+                bucket.splice(sameKeyItem, 1)
             }
         }
+    }
+
+
+    countOccurrence(value){
+        let count = 0;
+        for(let i=0; i<this.size; i++){
+            if(this.array[i]){
+                for(let j=0; j<this.array[i].length; j++){
+                    if(this.array[i][j][1] === value){
+                        count++
+                    }
+                }
+            }
+        }
+        return count;
     }
 
     print(){
-        for(let i=0; i<this.size; i++){
-            if(this.items[i]){
-                console.log(i, this.items[i]);
+        for(let i=0; i<this.array.length; i++){
+            if(this.array[i]){
+                console.log(i, this.array[i]);
             }
         }
-    }
-
-    findoccurence(value){
-        for(let i=0; i<this.size; i++){
-            if(this.items[i]){
-            let count = 0;
-            for(let j=0; j<this.items[i].length; j++){
-                if(this.items[i][j][1] === value){
-                    count++
-                }
-            }
-            return count;
-          }
-        
-        }
-       
     }
 }
 
 
-const HT = new Hash(10)
+const HashTest = new Hash(10)
+const array = [1,2,3,2,3,3,4,4];
+array.map((x) => HashTest.insertValue(x.toString(), x));
+HashTest.print();
+console.log(HashTest.getValue('4'));
+console.log(HashTest.countOccurrence(1));
 
-let array = [1, 2, 3, 4, 2, 3, 4, 1, 2, 3];
-array.map((x) => HT.insertValue(x.toString(), x))
-HT.print()
-console.log(HT.findoccurence(2));
-console.log(HT.getValue('4'));
-*/
-
-const mypromise = new Promise((res, rej)=> {
-    let result = 1;
-    if(result){
-        setTimeout(res, 3000, 'Sucessss')
-    }else{
-        rej('Something went Wrong')
-    }
-})
-
-async function sample() {
-  
-    try{
-        console.log('Start');
-        let result = await mypromise;
-        console.log(result);
-        console.log('End');
-    }
-    catch(error){
-        console.log(error);
-    }
-}
-
-sample()
