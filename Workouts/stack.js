@@ -1,14 +1,14 @@
 class stack{
     constructor(){
-        this.items = [];
-    }
-
-    getSize(){
-        return this.items.length;
+        this.items = []
     }
 
     isEmpty(){
         return this.items.length === 0
+    }
+
+    getSize(){
+        return this.items.length;
     }
 
     push(value){
@@ -19,55 +19,54 @@ class stack{
         if(this.isEmpty()){
             throw new Error('Stack underflow')
         }
-        return this.items.pop()
+       return this.items.pop()
     }
 
     peek(){
         if(this.isEmpty()){
-            return null;
+            throw new Error('Stack underflow')
         }
-        return this.items[this.items.length-1]; // stack contains the first element at the last position
+        return this.items[this.items.length-1]
     }
 
-    // reverse the stack
-    reverseStack() {
+    print(){
+         if(this.isEmpty()){
+          console.log('Stack is empty');
+         }
+         console.log(this.items);
+    }
+
+    reverseStack(){
         let reverse = new stack();
-        while(!this.isEmpty()) {
+        while(!this.isEmpty()){
             reverse.push(this.items.pop())
         }
-        return reverse;
+        return reverse
     }
 
-  
-    // Remove duplicates from the stack and maintain original order
-    removeDuplicates() {
-        let uniqueSet = new Set();
+    removeDup(){
+        let uniqUueSet = new Set();
         let resultArray = [];
-
-        for (let i = 0; i < this.items.length; i++) {
-            let current = this.items[i];
-            if (!uniqueSet.has(current)) {
-                uniqueSet.add(current);
-                resultArray.push(current);
+        for(let i=0; i<this.items.length; i++){
+            if(!uniqUueSet.has(this.items[i])){
+                uniqUueSet.add(this.items[i]);
+                resultArray.push(this.items[i])
             }
         }
-
-        this.items = resultArray; // Update the stack with unique elements
-
-        return this.items; // Return the unique array
+        return resultArray;
     }
 
-    // Count even numbers in the stack
-     countEven() {
+
+    countEven(){
         let count = 0;
-        for (let i = 0; i < this.items.length; i++) {
-            if (this.items[i] % 2 === 0) {
-                count++;
+        for(let i=0; i<this.items.length; i++){
+            if(this.items[i]%2 === 0){
+                count++
             }
         }
         return count;
     }
-    
+
 
     calculateEvenSum(){
         let sum = 0;
@@ -79,63 +78,38 @@ class stack{
         return sum;
     }
 
-   
-        // Sort the stack using a temporary stack
-        sortStack() {
-            let tempStack = new stack();
-    
-            while (!this.isEmpty()) {
-                // Pop the top element from the original stack
-                let temp = this.pop();
-    
-                // While the temporary stack is not empty and the top
-                // element is greater than the current element,
-                // pop elements from the temporary stack and push them
-                // back to the original stack
-                while (!tempStack.isEmpty() && tempStack.peek() > temp) {
-                    this.push(tempStack.pop());
-                }
-    
-                // Push the current element into the temporary stack
-                tempStack.push(temp);
-            }
-    
-            // Transfer elements back to the original stack
-            while (!tempStack.isEmpty()) {
-                this.push(tempStack.pop());
-            }
-    
-            return this.items; // Return the sorted stack
-        }
-    
-    print(){
-        console.log(this.items);  // .toString() => 11,22,33,44,55  converts the array into string format.
-    }
 
+    sortStack(){
+        let sorted = [];
+        while(!this.isEmpty()){
+            sorted.push(this.pop())
+        }
+        sorted.sort((a, b) => a-b);
+        return sorted
+    }
 }
 
-
-
 const testStack = new stack();
-const array = [1, 2, 3, 4, 5, 2, 4, 3, 10];
+const array = [5, 6, 5, 6, 7, 2, 1, 3];
 array.forEach((x) => testStack.push(x));
 
-console.log("Original stack:");
-testStack.print();
+console.log('Original stack array');
+console.log('peek:', testStack.peek()); // 3 
+// testStack.pop() // 3 should be removed
+testStack.print()
 
-console.log("Peek:", testStack.peek());
 
 
-console.log('UNique array without duplicates:');
-let uniqueArray = testStack.removeDuplicates();
-console.log(uniqueArray);
-
-console.log('Reversed array:');
+console.log('Reverse stack');
 console.log(testStack.reverseStack());
 
+console.log('Remove Duplicates stack');
+console.log(testStack.removeDup());
+
+console.log('Count even occurrences:');
 console.log(testStack.countEven());
 
+console.log('Calculate the summation of even :');
 console.log(testStack.calculateEvenSum());
-
 
 console.log(testStack.sortStack());
