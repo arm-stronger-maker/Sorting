@@ -76,3 +76,27 @@ function merge(a1, a2){
 }
 
 console.log(mergeSort([3, 2, 1, 5, 6, 4]));
+
+
+function KthLargestElement(array, k){
+    array.sort((a, b) => a-b);
+    return array[array.length-2]
+}   
+
+console.log(KthLargestElement([3, 2, 1, 5, 6, 4], 2));
+
+
+// This problem requires sorting even numbers first and odd numbers later.
+function separateSort(array){
+        let even = [];
+        let odd = [];
+        for(let i=0; i<array.length; i++){
+            if(array[i]%2===0){
+                even.push(array[i])
+            }else{
+                odd.push(array[i])
+            }
+        }
+        return [...even, ...odd]
+}
+console.log(separateSort([1,2,3,4,5,6,7,8,9]))
