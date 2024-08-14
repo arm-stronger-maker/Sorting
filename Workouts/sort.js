@@ -100,3 +100,38 @@ function separateSort(array){
         return [...even, ...odd]
 }
 console.log(separateSort([1,2,3,4,5,6,7,8,9]))
+
+
+let array = [50, 60, 70, 80, 90];
+
+function test(array, target){
+        if(array.length < 2 || target<0){
+            return false;
+        }
+
+        for(let i=0; i<array.length; i++){
+                if(target === i){
+                    array.splice(i-1, 1, 0)
+                }
+        }
+        return array;
+}
+
+console.log(test(array, 2));
+
+
+
+
+function consecutive(array){
+    let get = [];
+    for(let i=0; i<array.length; i++){
+        if(get.includes(array[i])){
+            get = [];
+        }
+            get.push(array[i]);
+        
+    }
+    return get;
+}
+
+console.log(consecutive([1,2,3,1,2,3,4,1,2,4,5,6]));
