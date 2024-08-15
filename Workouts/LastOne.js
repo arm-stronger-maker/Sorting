@@ -631,3 +631,255 @@ function mergeSort(a1, a2){
 }
 
 console.log(merge([7,5,2,1,3,9]));
+
+// Linear probing.
+
+class LinearProbes{
+    constructor(size){
+        this.array = new Array(size).fill(null);
+        this.size = size
+    }
+
+    hashFnc(key){
+        let hash = 0;
+        for(let i=0; i<key.length; i++){
+            hash = (hash+key.charCodeAt(i)) % this.size
+        }
+        return hash
+    }
+
+    insert(key, value){
+        let index = this.hashFnc(key);
+        while(this.array[index] !== null){
+            index = (index+1) % this.size
+        }
+        this.array[index] = {key, value}
+    }
+
+    search(key){
+        let index = this.hashFnc(key);
+        while(this.array[index] !== null){
+            if(this.array[index].key === key){
+                return this.array[index].value;
+            }
+            index = (index+1) % this.size
+        }
+        return undefined
+    }
+}
+
+const testLinear = new LinearProbes(10);
+testLinear.insert('name', 'John');
+testLinear.insert('name', 'Steve');
+testLinear.insert('age', 26);
+console.log(testLinear.search('name'));
+console.log(testLinear.search('name'));
+
+class Quadratic{
+    constructor(size){
+        this.array = new Array(size).fill(null)
+        this.size = size
+    }
+
+    hashGen(key){
+        let hash = 0;
+        for(let i=0; i<key.length; i++){
+            hash = (hash+key.charCodeAt(i)) % this.size
+        }
+        return hash;
+    }
+
+    insert(key, value){
+        let index = this.hashGen(key);
+        let i=1;
+        while(this.array[index] !== null){
+            index = (this.hashGen(key) * i+i) % this.size;
+            i++
+        }
+        this.array[index] = {key, value}
+    }
+
+    print(){
+        console.log(this.array);
+    }
+}
+
+
+const testQuadratics = new Quadratic(10);
+testQuadratics.insert('name', 'Sanjiv')
+testQuadratics.insert('name', 'Saara')
+testQuadratics.insert('name', 'Kyle')
+testQuadratics.insert('name', 'Daniel')
+testQuadratics.print()
+
+
+
+// Without using Buildin methods to write queue imple
+class Queue{
+    constructor(){
+        this.array = [];
+        this.length = 0;
+    }
+
+    enqueue(value){
+        this.array[this.length] = value;
+        this.length++;
+    }
+
+    dequeue(){
+        if(this.length === 0){
+            throw new Error('Stack underflow')
+        }
+        let remove = this.array[0];
+        for(let i=1; i<this.length; i++){
+            this.array[i-1] = array[i]
+        }
+        this.length--
+        return remove;
+    }
+
+    peek(){
+        if(this.isEmpty()){
+            return null;
+        }
+        return this.array[0]
+    }
+
+    isEmpty(){
+        return this.length === 0
+    }
+
+    getSize(){
+        return this.length
+    }
+
+    print(){
+        let resultArray = []
+        for(let i=0; i<this.length; i++){
+            resultArray.push(this.array[i])
+        }
+        return resultArray;
+    }
+
+    reverseQueue(){
+        let reverse = [];
+        for(let i=this.length-1; i>=0; i--){
+            reverse.push(this.array[i])
+        }
+        return reverse
+    }
+
+    reverseSwap(){
+        if(this.length == 0){
+            return null;
+        }
+        let start = 0;
+        let end = this.length-1;
+        while(start<end){
+            let temp = this.array[start];
+            this.array[start] = this.array[end];
+            this.array[end] = temp;
+            start++
+            end--
+        }
+    }
+
+    removeDup(){
+        let uniqueQueue = [];
+        let uniqueLength = 0;
+        for(let i=0; i<this.length; i++){
+            let found = false;
+            for(let j=0; j<uniqueLength; j++){
+                if(uniqueQueue[j] === this.array[i]){
+                    found = true;
+                    break;
+                }
+            }
+            if(found !== true){
+                uniqueQueue[uniqueLength] = this.array[i];
+                uniqueLength++
+            }
+        }
+        this.array = uniqueQueue;
+        this.length = uniqueLength;
+    }
+
+    countEven(){
+        let count = 0;
+        for(let i=0; i<this.length; i++){
+            if(this.array[i]%2===0){
+                count++
+            }
+        }
+        return count
+    }
+
+    countOdd(){
+        let count = 0;
+        for(let i=0; i<this.length; i++){
+            if(this.array[i]%2!==0){
+                count++
+            }
+        }
+        return count;
+    }
+
+    calculateEvenSum(){
+        let sum = 0;
+        for(let i=0; i<this.length; i++){
+            if(this.array[i]%2==0){
+                sum += this.array[i]
+            }
+        }
+        return sum;
+    }
+
+    sortQueue(){
+        for(let i=0; i<this.length-1; i++){
+            for(let j=0; j<this.length-1; j++){
+                if(this.array[j]>this.array[j+1]){
+                    let temp = this.array[j];
+                    this.array[j] = this.array[j+1];
+                    this.array[j+1] = temp
+                }
+            }
+        }
+    }
+
+    findMax(){
+        let max = this.array[0];
+        for(let i=1; i<this.length; i++){
+            if(max<this.array[i]){
+                max = this.array[i]
+            }
+        }
+        return max;
+    }
+}
+
+const testTestQueue = new Queue();
+testTestQueue.enqueue(10)
+testTestQueue.enqueue(20)
+testTestQueue.enqueue(70);
+testTestQueue.enqueue(30);
+testTestQueue.enqueue(30);
+testTestQueue.enqueue(40);
+testTestQueue.enqueue(50);
+console.log(testTestQueue.print())
+
+console.log(testTestQueue.peek());
+console.log(testTestQueue.reverseQueue());
+
+testTestQueue.reverseSwap();
+console.log( testTestQueue.print());
+
+console.log(testTestQueue.countEven());
+console.log(testTestQueue.countOdd());
+console.log(testTestQueue.calculateEvenSum());
+console.log(testTestQueue.findMax());
+
+testTestQueue.removeDup();
+console.log(testTestQueue.print())
+
+testTestQueue.sortQueue();
+console.log(testTestQueue.print());

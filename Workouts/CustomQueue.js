@@ -130,7 +130,7 @@ class Queue{
 
     sortQueue(){
         for(let i=0; i<this.length-1; i++){
-            for(let j=0; j<this.length-1-i; j++){
+            for(let j=0; j<this.length-1; j++){
                 if(this.items[j]>this.items[j+1]){
                     let temp = this.items[j];
                     this.items[j] = this.items[j+1];
