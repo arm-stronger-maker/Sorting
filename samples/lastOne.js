@@ -119,14 +119,6 @@ class priority{
         this.items = []
     }
 
-    getSize(){
-        return this.array.length;
-    }
-
-    isEmpty(){
-        return this.array.length === 0
-    }
-
     insert(value, priority){
         let bunch = {value, priority};
         let added = false;
@@ -176,22 +168,6 @@ function middleRemover(array){
 
 // console.log(middleRemover([1,2,3,4,5]));
 
-// proper middle remover.
-function middleRemover2(array){
-let len = array.length;
-if(len === 0){
-    return array
-}
-let middle = Math.floor(len/2);
-if(len%2 === 0){
-    array.splice(middle-1, 2)
-} else {
-    array.splice(middle,1)
-}
-return array
-}
-
-console.log(middleRemover2([1,2,3,4,6]));
 
 
 

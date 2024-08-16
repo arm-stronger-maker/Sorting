@@ -883,3 +883,137 @@ console.log(testTestQueue.print())
 
 testTestQueue.sortQueue();
 console.log(testTestQueue.print());
+
+
+class HashTesting{
+    constructor(size){
+        this.items = new Array(size);
+        this.size = size;
+    }
+
+    hashgen(key){
+        let hash = 0;
+        for(let i=0; i<key.length; i++){
+            hash = (hash+key.charCodeAt(i)) % this.size;
+        }
+        return hash;
+    }
+
+    insert(key, value){
+        let index = this.hashgen(key);
+        if(!this.items[index]){
+            this.items[index] = []
+        }
+        this.items[index].push([key,value])
+    }
+
+    getValue(key){
+        let index = this.hashgen(key);
+        let bucket = this.items[index];
+        if(bucket){
+            let sameKeyItem = bucket.find((item) => item[0] === key);
+            if(sameKeyItem){
+                return sameKeyItem[1]
+            }
+        }
+        return undefined
+    }
+
+
+    remove(key){
+        let index =this.hashgen(key);
+        let bucket = this.items[index];
+        if(bucket){
+            let sameKeyItem = bucket.findIndex((item) => item[0] === key);
+            if(sameKeyItem !== -1){
+                bucket.splice(sameKeyItem, 1)
+            }
+        }
+    }
+
+
+    countOccur(value){
+        let count = 0
+        for(let i=0; i<this.items.length; i++){
+            if(this.items[i]){
+                for(let j=0; j<this.items[i].length; j++){
+                    if(this.items[i][j][1] === value){
+                        count++
+                    }
+                }
+            }
+        }
+        return count;
+    }
+
+
+    removeDup(){
+        let uniqueArray = new Array(this.size);
+        for(let i=0; i<this.items.length; i++){
+            if(this.items[i]){
+                for(let j=0; j<this.items[i].length; j++){
+                    const [key, value] = this.items[i][j];
+                    let index = this.hashgen(key);
+                    if(!uniqueArray[index]){
+                        uniqueArray[index] = [];
+                    }
+                    let existTest = uniqueArray[index].some((item) => item[1] === value);
+                    if(!existTest){
+                        uniqueArray[index].push([key, value])
+                    }
+                }
+            }
+        }
+        return uniqueArray;
+    }
+
+    sortElements(){
+        let allElements = [];
+        for(let i=0; i<this.items.length; i++){
+            if(this.items[i]){
+                for(let j=0; j<this.items[i].length; j++){
+                    allElements.push(this.items[i][j])
+                }
+            }
+        }
+        allElements.sort((a, b) => (a[1] > b[1]? 1 : -1))
+        return allElements;
+    }
+
+    reverse(){
+        let reverseArray = [];
+        for(let i=0; i<this.items.length; i++){
+            if(this.items[i]){
+                for(let j=0; j<this.items[i].length; j++){
+                    reverseArray.push(this.items[i][j])
+                }
+            }
+        }
+        reverseArray.reverse();
+        return reverseArray;
+    }
+
+    print(){
+        for(let i=0; i<this.items.length; i++){
+            if(this.items[i]){
+                console.log(i, this.items[i]);
+            }
+        }
+    }
+}
+
+
+const oo = new HashTesting(20);
+oo.insert('name', 'xxx');
+oo.insert('age', 2);
+oo.insert('name', 'zzz');
+oo.insert('name', 'yyy');
+// oo.insert('age', 21);
+oo.insert('age', 2);
+oo.insert('age', 2);
+oo.insert('age', 22);
+oo.print()
+console.log(oo.getValue('age'));
+console.log(oo.countOccur(2));
+console.log(oo.sortElements());
+console.log(oo.reverse());
